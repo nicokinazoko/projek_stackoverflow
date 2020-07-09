@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserTable extends Migration
+class CreatePoinTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->bigIncrements('id_user');
-            $table->string('nama_user');
-            $table->string('email_user');
+        Schema::create('poin', function (Blueprint $table) {
+            $table->bigIncrements('id_poin');
+            $table->bigInteger('id_user');
+            $table->bigInteger('id_jawaban');
+            $table->integer('downvote');
+            $table->integer('upvote');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('poin');
     }
 }
