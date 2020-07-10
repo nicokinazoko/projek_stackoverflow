@@ -14,13 +14,12 @@ class CreateKomentarJawabanTable extends Migration
     public function up()
     {
         Schema::create('komentar_jawaban', function (Blueprint $table) {
-            $table->bigIncrements('id_komentar_jawaban');
-            $table->string('isi_komentar_jawaban');
+            $table->string('isi');
             $table->timestamps();
-            $table->bigInteger('id_user');
-            $table->bigInteger('id_jawaban');
-            // $table->foreign('id_user')->references('id_user')->on('user');
-            // $table->foreign('id_jawaban')->references('id_jawaban')->on('jawaban');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('jawaban_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('jawaban_id')->references('id')->on('jawaban')->onDelete('cascade');
         });
     }
 

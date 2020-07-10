@@ -14,11 +14,14 @@ class CreatePoinTable extends Migration
     public function up()
     {
         Schema::create('poin', function (Blueprint $table) {
-            $table->bigIncrements('id_poin');
-            $table->bigInteger('id_user');
-            $table->bigInteger('id_jawaban');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('pertanyaan_id')->unsigned()->nullable();
+            $table->bigInteger('jawaban_id')->unsigned()->nullable();
             $table->integer('downvote');
             $table->integer('upvote');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan')->onDelete('cascade');
+            $table->foreign('jawaban_id')->references('id')->on('jawaban')->onDelete('cascade');
         });
     }
 
