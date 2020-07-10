@@ -56,5 +56,9 @@ Route::get('/items/{id}/edit', 'ItemController@edit'); // menampilkan form untuk
 Route::put('/items/{id}', 'ItemController@update'); // menyimpan perubahan dari form edit
 Route::delete('/items/{id}', 'ItemController@destroy'); // menghapus data dengan id
 
+//test push
+Route::get('/ask',function(){
+    return 'test ask';
+});
 
 
