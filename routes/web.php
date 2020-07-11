@@ -16,53 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::get('/coba', function ()
-{
-    return view('/items/coba');
-});
-
-//Route::get('/', 'ControllerArtikel@showErd'); //menampilkan view erd
-Route::get('/artikel/create', 'ControllerArtikel@createFormArtikel');//menampilkan form artikel
-Route::post('/artikel', 'ControllerArtikel@storeArtikel' ); //menyimpan artikel dari form
-Route::get('/artikel', 'ControllerArtikel@index');//menampilkan data dari db
-
-Route::get('/artikel/{id}', 'ControllerArtikel@detailArtikel'); //menampilkan detail artikel dari id
-
-Route::put('/artikel/{id}','ControllerArtikel@updateArtikel' ); //update artikel ddari form
-Route::get('/artikel/{id}/update','ControllerArtikel@editArtikel');//menampilkan form update untuk artikel
-
-Route::delete('artikel/{id}', 'ControllerArtikel@deleteArtikel'); //menghapus artikel
-
-
-Route::get('/pertanyaan', 'controllerStack@showPertanyaan');
-
-Route::get('/jawaban', 'controllerStack@showJawaban');
-
-Route::get('/user','controllerStack@showUser');
-
-Route::get('/pertanyaan/create', 'controllerStack@createPertanyaan');
-
-Route::get('/jawaban/create', 'controllerStack@createJawaban');
-
-
-
-Route::get('/items/create', 'ItemController@create'); // menampilkan halaman form
-Route::post('/items', 'ItemController@store'); // menyimpan data
-Route::get('/items', 'ItemController@index'); // menampilkan semua
-Route::get('/items/{id}', 'ItemController@show'); // menampilkan detail item dengan id
-Route::get('/items/{id}/edit', 'ItemController@edit'); // menampilkan form untuk edit item
-Route::put('/items/{id}', 'ItemController@update'); // menyimpan perubahan dari form edit
-Route::delete('/items/{id}', 'ItemController@destroy'); // menghapus data dengan id
-
-//test push
-Route::get('/ask',function(){
-    return 'test ask';
-});
-
-
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/','PertanyaanController@index');
