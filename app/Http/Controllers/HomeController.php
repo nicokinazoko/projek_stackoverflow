@@ -27,4 +27,12 @@ class HomeController extends Controller
         $pertanyaan =   modelStack::getAllPertanyaan();
         return view('home', compact('pertanyaan'));
     }
+
+    public function showJawaban($id)
+    {
+        $pertanyaan = modelStack::find_by_id($id);
+        // dd($pertanyaan);
+        $jawaban =   modelStack::getJawaban_byid($id);
+        return view('jawaban', compact('pertanyaan','jawaban'));
+    }
 }

@@ -5,24 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">
+                    <h5>Judul : {{$pertanyaan->judul}}</h5>
+                    <p>{{$pertanyaan->isi}}</p>
+                </div>
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                     @endif
-                    <p>You are logged in!</p>
-                    <a href="/pertanyaan/create" class="btn btn-primary btn-md my-2">Create Pertanyaan</a>
-                    @foreach ($pertanyaan as $key => $tanya)
+
+                    @foreach ($jawaban as $key => $jawab)
                     <div class="card my-2">
                         <div class="card-body">
-                            <h5 class="card-title">Judul : {{$tanya->judul}}</h5>
-                            <p class="card-text">{{$tanya->isi}}</p>
-                            <p >#{{$tanya->tag}}</p>
-                            <a href="/jawaban/{{$tanya->id}}" class="btn btn-info btn-md">Jawaban</a>
-                            <a href="" class="btn btn-info btn-warning ">Edit</a>
-                            <form action="/pertanyaan/{{$tanya->id}}" method="POST" style="display:inline">
+                            <p class="card-text">{{$jawab->isi}}</p>
+                            <a href="/jawaban/{{$jawab->id}}" class="btn btn-info btn-md">Jawaban</a>
+                            <a href="/jawaban/{{$jawab->id}}/edit" class="btn btn-info btn-warning ">Edit</a>
+                            <form action="/jawaban/{{$jawab->id}}" method="POST" style="display:inline">
                             @csrf
                             @method("DELETE")
                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
@@ -30,6 +30,10 @@
                         </div>
                     </div>
                     @endforeach
+                </div>
+                <div class="card-footer">
+                    <a href="/jawaban/{{$pertanyaan->id}}/create" class="btn btn-primary btn-md my-2">Jawab</a>
+                    <a href="/home" class="btn btn-danger btn-md my-2">Kembali</a>
                 </div>
             </div>
         </div>

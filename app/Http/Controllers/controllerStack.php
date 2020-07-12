@@ -13,12 +13,6 @@ class controllerStack extends Controller
         return view('/items/pertanyaanView', compact('pertanyaan'));
     }
 
-    public function showJawaban()
-    {
-        $jawaban =   modelStack::getAllJawaban();
-        return view('/items/jawabanView', compact('jawaban'));
-    }
-
     public function showUser()
     {
         $user = modelStack::getAllUsers();
@@ -30,9 +24,22 @@ class controllerStack extends Controller
         return view('form_pertanyaan');
     }
     
-    public function createJawaban()
+    public function editJawaban($id)
     {
-        return view('items/formJawaban');
+        $jawaban = modelStack::Jawaban_findbyid($id);
+        return view('edit_jawaban', compact('jawaban'));
+    }
+    
+    public function updateJawaban($id,Request $request)
+    {
+        $jawaban = modelStack::UpdateJawaban($id,$request->all());
+        return redirect('/home');
+    }
+    
+    public function createJawaban($id)
+    {
+        $pertanyaan = modelStack::find_by_id($id);
+        return view('form_jawaban', compact('pertanyaan'));
     }
     
     public function storePertanyaan(Request $request)
@@ -43,17 +50,28 @@ class controllerStack extends Controller
         return redirect('/home');
     }
 
+    public function storeJawaban(Request $request)
+    {
+        unset($request['_token']);
+        // dd($request->all());
+        $id_pertanyaan = $request['pertanyaan_id'];
+        $jawaban =   modelStack::saveJawaban($request->all());
+        $redirect = "/jawaban/".$id_pertanyaan;
+        // dd($redirect);
+        return redirect($redirect);
+    }
 
-    public function deletePertanyaan($id_delete)
+
+    public function destroyPertanyaan($id_delete)
     {
         $delete_pertanyaan =   modelStack::deletePertanyaan($id_delete);
         return redirect('/home');
     }
 
-    public function deleteJawaban($id_delete)
+    public function destroyJawaban($id_delete)
     {
-        $delete_jawaban             =   modelStack::deleteJawaban($id_delete);
-        return redirect('/');
+        $delete_jawaban  =   modelStack::deleteJawaban($id_delete);
+        return redirect('/home');
     }
 
     public function deleteUser($id_delete)

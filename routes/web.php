@@ -34,23 +34,14 @@ Route::get('/coba', function ()
 
 
 // Route::get('/pertanyaan', 'controllerStack@showPertanyaan');
-Route::post('/pertanyaan', 'controllerStack@storePertanyaan');
-Route::get('/jawaban', 'controllerStack@showJawaban');
 
-Route::get('/user','controllerStack@showUser');
-
-Route::get('/pertanyaan/create', 'controllerStack@createPertanyaan');
-Route::get('/jawaban/create', 'controllerStack@createJawaban');
-
-
-
-Route::get('/items/create', 'ItemController@create'); // menampilkan halaman form
-Route::post('/items', 'ItemController@store'); // menyimpan data
-Route::get('/items', 'ItemController@index'); // menampilkan semua
-Route::get('/items/{id}', 'ItemController@show'); // menampilkan detail item dengan id
-Route::get('/items/{id}/edit', 'ItemController@edit'); // menampilkan form untuk edit item
-Route::put('/items/{id}', 'ItemController@update'); // menyimpan perubahan dari form edit
-Route::delete('/items/{id}', 'ItemController@destroy'); // menghapus data dengan id
+// Route::get('/items/create', 'ItemController@create'); // menampilkan halaman form
+// Route::post('/items', 'ItemController@store'); // menyimpan data
+// Route::get('/items', 'ItemController@index'); // menampilkan semua
+// Route::get('/items/{id}', 'ItemController@show'); // menampilkan detail item dengan id
+// Route::get('/items/{id}/edit', 'ItemController@edit'); // menampilkan form untuk edit item
+// Route::put('/items/{id}', 'ItemController@update'); // menyimpan perubahan dari form edit
+// Route::delete('/items/{id}', 'ItemController@destroy'); // menghapus data dengan id
 
 //test push
 Route::get('/ask',function(){
@@ -58,8 +49,18 @@ Route::get('/ask',function(){
 });
 
 
+Route::post('/pertanyaan', 'controllerStack@storePertanyaan');
+Route::delete('/pertanyaan/{id}', 'controllerStack@destroyPertanyaan');
+Route::post('/jawaban', 'controllerStack@storeJawaban');
+Route::get('/jawaban/{id}/edit', 'controllerStack@editJawaban');
+Route::put('/jawaban/{id}/update', 'controllerStack@updateJawaban');
+Route::delete('/jawaban/{id}', 'controllerStack@destroyJawaban');
+Route::get('/user','controllerStack@showUser');
+Route::get('/pertanyaan/create', 'controllerStack@createPertanyaan');
+Route::get('/jawaban/{id}/create/', 'controllerStack@createJawaban');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/jawaban/{id}', 'HomeController@showJawaban')->name('jawaban');
 
 Route::get('/','PertanyaanController@index');
