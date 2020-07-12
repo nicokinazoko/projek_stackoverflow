@@ -6,13 +6,13 @@
 <br>
 @foreach ($user as $key => $users)
 
-<div class="card shadow mb-4">
+<div class="card shadow my-2">
     <!-- Card Body -->
     <div class="card-body">
-      <h2>Judul : {{$users->nama_user}}</h2>
-      <a href="/artikel/{{$users->id_user}}" class="btn btn-primary">Detail</a>
-      <a href="/artikel/{{$users->id_user}}/update" class="btn btn-primary">Update</a>
-      <form action="/artikel/{{$users->id_user}}" method="post" style="display: inline">
+      <h2>Name : {{$users->name}}</h2>
+      <a href="/artikel/{{$users->id}}" class="btn btn-primary">Detail</a>
+      <a href="/artikel/{{$users->id}}/update" class="btn btn-primary">Update</a>
+      <form action="/artikel/{{$users->id}}" method="post" style="display: inline">
         @csrf
         @method('DELETE')
             <button type="submit" class="btn btn-sm-danger">

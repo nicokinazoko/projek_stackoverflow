@@ -24,26 +24,22 @@ Route::get('/coba', function ()
 });
 
 //Route::get('/', 'ControllerArtikel@showErd'); //menampilkan view erd
-Route::get('/artikel/create', 'ControllerArtikel@createFormArtikel');//menampilkan form artikel
-Route::post('/artikel', 'ControllerArtikel@storeArtikel' ); //menyimpan artikel dari form
-Route::get('/artikel', 'ControllerArtikel@index');//menampilkan data dari db
-
-Route::get('/artikel/{id}', 'ControllerArtikel@detailArtikel'); //menampilkan detail artikel dari id
-
-Route::put('/artikel/{id}','ControllerArtikel@updateArtikel' ); //update artikel ddari form
-Route::get('/artikel/{id}/update','ControllerArtikel@editArtikel');//menampilkan form update untuk artikel
-
-Route::delete('artikel/{id}', 'ControllerArtikel@deleteArtikel'); //menghapus artikel
+// Route::get('/artikel/create', 'ControllerArtikel@createFormArtikel');//menampilkan form artikel
+// Route::post('/artikel', 'ControllerArtikel@storeArtikel' ); //menyimpan artikel dari form
+// Route::get('/artikel', 'ControllerArtikel@index');//menampilkan data dari db
+// Route::get('/artikel/{id}', 'ControllerArtikel@detailArtikel'); //menampilkan detail artikel dari id
+// Route::put('/artikel/{id}','ControllerArtikel@updateArtikel' ); //update artikel ddari form
+// Route::get('/artikel/{id}/update','ControllerArtikel@editArtikel');//menampilkan form update untuk artikel
+// Route::delete('artikel/{id}', 'ControllerArtikel@deleteArtikel'); //menghapus artikel
 
 
-Route::get('/pertanyaan', 'controllerStack@showPertanyaan');
-
+// Route::get('/pertanyaan', 'controllerStack@showPertanyaan');
+Route::post('/pertanyaan', 'controllerStack@storePertanyaan');
 Route::get('/jawaban', 'controllerStack@showJawaban');
 
 Route::get('/user','controllerStack@showUser');
 
 Route::get('/pertanyaan/create', 'controllerStack@createPertanyaan');
-
 Route::get('/jawaban/create', 'controllerStack@createJawaban');
 
 

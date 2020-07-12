@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\modelMedium;
+use App\Models\modelMedium;
 
 class ControllerArtikel extends Controller
 {
