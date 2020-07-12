@@ -39,7 +39,7 @@
           </form>
         </div>
       </li>
-
+{{-- 
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -143,18 +143,36 @@
           </a>
           <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
         </div>
-      </li>
+      </li> --}}
 
       <div class="topbar-divider d-none d-sm-block"></div>
 
       <!-- Nav Item - User Information -->
       <li class="nav-item dropdown no-arrow">
+        @if (Auth::check())
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-          <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+          <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+          {{-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> --}}
         </a>
+        @else
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Guest</span></a>    
+        @endif
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          @guest
+          <a class="dropdown-item" href="{{ route('login')}}" >
+            <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            {{ __('Login') }}
+          </a>
+
+          <div class="dropdown-divider"></div>
+          @if (Route::has('register'))
+              <a class="dropdown-item" href="{{ route('register') }}">
+                <i class="fas fa-register-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ __('Register') }}</a>
+          @endif
+          @else
           <a class="dropdown-item" href="#">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Profile
@@ -168,10 +186,18 @@
             Activity Log
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+          
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="
+          event.preventDefault();
+          document.getElementById('logout-form').submit();
+          "">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-            Logout
+            {{ __('Logout') }}
           </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+          @endguest
         </div>
       </li>
 

@@ -14,7 +14,7 @@ class CreateKomentarPertanyaanTable extends Migration
     public function up()
     {
         Schema::create('komentar_pertanyaan', function (Blueprint $table) {
-            $table->string('isi');
+            $table->text('isi');
             $table->timestamps();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('pertanyaan_id')->unsigned();

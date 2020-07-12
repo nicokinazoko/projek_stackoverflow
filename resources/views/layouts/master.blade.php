@@ -28,7 +28,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    @include('/layouts/partials/navbar')
+    {{-- @include('/layouts/partials/navbar') --}}
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -75,7 +75,7 @@
   </a>
 
   <!-- Logout Modal-->
-  @include('/layouts/partials/logout_modal')
+  {{-- @include('/layouts/partials/logout_modal') --}}
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('/sbadmin2/vendor/jquery/jquery.min.js')}}"></script>

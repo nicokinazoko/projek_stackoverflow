@@ -8,6 +8,7 @@ class Poin extends Model
 {
     protected $table = 'poin';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function user()
     {
